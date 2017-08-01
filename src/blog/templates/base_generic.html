@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  {% block title %}{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Add additional CSS in static file -->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+
+<body>
+<div class = "page__header clearfix">
+<div class = "header__wrapper">
+    <a href = '/' class = "header__logo">Simple Django blog</a>
+    <div class = "header__top-menu">
+    <ul class = "top-menu">
+      <li class = "top-menu__row">
+        <a href = '/' class = "top-menu__item">Все записи</a>
+      </li>
+      <li class = "top-menu__row">
+        <a href = '/' class = "top-menu__item">Добавить запись</a>
+      </li>
+    </ul>
+</div>
+</div>
+</div>
+<div class = "page__main-block">
+      {% block content %}{% endblock %}
+      {% block pagination %}{% endblock %}
+</div>
+
+</body>
+</html>
