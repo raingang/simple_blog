@@ -48,12 +48,14 @@ body{
 	margin: 0px 5%;
 }
 .article-list{
+
 	margin: 0px;
 	padding: 0px;
     display: flex;
     flex-direction: column;
 }
 .article-list__article{
+	
 	list-style: none;
 	margin-bottom: 50px;
 }

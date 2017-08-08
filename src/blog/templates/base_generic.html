@@ -22,7 +22,7 @@
         <a href = '/' class = "top-menu__item">Все записи</a>
       </li>
       <li class = "top-menu__row">
-        <a href = "{%url 'article_form'%}" class = "top-menu__item">Добавить запись</a>
+        <a href = "{%url 'article_create'%}" class = "top-menu__item">Добавить запись</a>
       </li>
       <li class = "top-menu__row">
       {% if request.user.is_authenticated %}
