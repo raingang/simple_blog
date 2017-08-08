@@ -20,5 +20,8 @@ urlpatterns = [
     url(r'^$', RedirectView.as_view(url='/blog/', permanent=True)),
     url(r'^admin/', admin.site.urls),
     url(r'^blog/', include('blog.urls')),
+]
 
+urlpatterns += [
+    url('^accounts/', include('django.contrib.auth.urls')),
 ]

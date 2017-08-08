@@ -1,7 +1,11 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-
+<style>
+.page__header{
+	background-color: #ff9800;
+}
+</style>
 <div class = "article">
 <h1 class = "article__title">
 {{article.title}}
@@ -10,5 +14,35 @@
 {{article.text_content}}
 </p>
 </div>
+{% if comment_form %}
+<div class = "add_comment">
+<p> Добавить комментарий </p>
+<form action = '' method = 'POST'>
+{% csrf_token %}
+
+{{comment_form.title}}
+{{comment_form.text_content}}
+<input type = "submit" value = "Отправить">
+</form>
+</div>
+
+{% else %}
+<span> Зарегистрируйтесь, чтобы оставлять комментарии</span>
+{% endif %}
+<ul class = "comments">
+{% for comment in comments %}
+
+<li class = "comment">
+
+<div class = "comment__top">{{comment.author}} {{comment.title}}</div>
+
+<div class = "comment__body">{{comment.text_content}}</div>
+
+<div class = "comment__bottom">{{comment.date}}</div>
+
+</li>
+
+{% endfor %}
+</ul>
 
 {% endblock %}

@@ -6,7 +6,7 @@
 {% for article in article_list %}
 <li class = 'article-list__article'>
 <div class = 'article'>
-<a class = 'article__title'>
+<a href = "{{article.get_detail_url}}"class = 'article__title'>
     {{article.title}}
 </a>
 <span class = 'article__description'>
@@ -14,7 +14,12 @@
 </span>
 <div class = "article__footer">
 <span class = 'article__date'>
-    {{article.date}}
+    {{article.date}} 
+</span>
+<a href = "{{ article.get_update_url }}">Редактировать</a>
+
+<span class = 'article__author'>
+Автор: {{ article.author}}  Комментариев: {{ article.get_number_comments }}
 </span>
 </div>
 </div>

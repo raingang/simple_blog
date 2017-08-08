@@ -6,6 +6,8 @@
 	background-color: #00CC33;
 }
 </style>
+
+
 <form action = "" method="POST" class = "article-form">
 {% csrf_token %}
 <div>
@@ -16,6 +18,7 @@
 <p><label for = "id_text_content">Содержание</label></p>
 {{form.text_content}}</div>
 <div>
+
 <input type = "submit" value = "Отправить">
 </form>
 

@@ -71,3 +71,28 @@ body{
 	padding: 5px 0px;
 	color: grey;
 }
+
+label{
+	display: block;
+	color: green;
+	font-size: 46px;
+}
+
+.comments{
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+	display: flex;
+	flex-direction: column;
+}
+
+.comment{
+	padding: 20px 0px;
+}
+
+.comment__top{
+	background-color: #ff9800;
+	padding: 10px 8px;
+	color: #fff;
+	font-size: 20px;
+}
