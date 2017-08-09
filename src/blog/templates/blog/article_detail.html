@@ -7,6 +7,9 @@
 }
 </style>
 <div class = "article">
+{% if can_edit %}
+Редактировать
+{% endif %}
 <h1 class = "article__title">
 {{article.title}}
 </h1>

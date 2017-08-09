@@ -11,7 +11,7 @@ from django.views.generic.edit import FormView
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 
-#Views for forms
+# Views for forms
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
 
@@ -21,9 +21,16 @@ from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
+from django.http import Http404
+
+
 class ArticleListView(generic.ListView):
     model = Article
     template_name = 'blog/article_list.html'
+
+    def get_cotext_data(self, **kwargs):
+        context = super(ArticleListView, self).get_context_data(**kwargs)
+        return context
 
 
 class ArticleDetailView(generic.DetailView):
@@ -32,6 +39,12 @@ class ArticleDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ArticleDetailView, self).get_context_data(**kwargs)
+        can_edit = False
+
+        if self.request.user == self.get_object().author:
+            can_edit = True
+
+        context['can_edit'] = can_edit
         context['comments'] = self.object.comment_set.all()
         if self.request.user.is_authenticated():
             context['comment_form'] = CommentForm()
@@ -70,11 +83,13 @@ def articleDetail(request, pk):
         form = None
     return render(request, 'blog/article_detail.html', {'article': article, 'comments': comments, 'comment_form': form})
 '''
+
+
 class CreateArticleView(CreateView):
     model = Article
     fields = ['title', 'text_content']
     template_name = 'blog/article_create.html'
-    
+
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super(CreateArticleView, self).dispatch(request, *args, **kwargs)
@@ -106,12 +121,19 @@ def post_article(request):
         form = ArticleForm()
     return render(request, 'blog/article_post.html', {'form': form})
 '''
+
+
 class UpdateArticleView(UpdateView):
     model = Article
     fields = ['title', 'text_content']
     template_name = 'blog/article_update.html'
+
     @method_decorator(login_required)
+    # Проверка: автор записи = пользователь?
     def dispatch(self, request, *args, **kwargs):
+        article = self.get_object()
+        if article.author != request.user:
+            raise Http404('У вас нет прав редактировать эту запись')
         return super(UpdateArticleView, self).dispatch(request, *args, **kwargs)
 '''
 @login_required
