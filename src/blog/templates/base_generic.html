@@ -27,13 +27,13 @@
       <li class = "top-menu__row">
       {% if request.user.is_authenticated %}
         <a href = "{% url 'logout' %}" class = "top-menu__item">Выйти</a>
+        <a href = "{% url 'profile' request.user.username %}" class = "top-menu__item">{{ request.user}}</a>
 
       {% else %}
-        
+        <a href = "{% url 'signup' %}" class = "top-menu__item"> Регистрация</a>a
         <a href = "{% url 'login' %}" class = "top-menu__item">Войти</a>
 
       {% endif %}
-        {{request.user}}
       </li>
     </ul>
 </div>

@@ -98,3 +98,8 @@ label{
 	color: #fff;
 	font-size: 20px;
 }
+.pagination{
+	text-align: center;
+	margin: 0 auto;
+	padding: 20px 0px;
+}

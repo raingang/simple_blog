@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/accounts/profile.css' %}">
+{% block content %}
+<div class = "profile_item">Имя пользователя: {{profile.user}}</div>
+<div class = "profile_item">Информация о себе: {{profile.bio}}</div>
+<div class = "profile_item">Страна: {{profile.location}}</div>
+<div class = "profile_item">День рождения: {{profile.birth_date}}</div>
+
+<ul class = "recent_articles">
+Последние статьи:
+{% for article in recent_articles %}
+<li class = "recent_articles__item"> <a class = "recent_articles__href" href = "{{article.get_detail_url}}">{{ article.title }}</a></li>
+{% endfor %}
+</ul>
+
+<ul>
+Последние комментарии:
+{% for comment in recent_comments %}
+<li> <span> {{comment.text_content}} </span> для записи <a href = "{{comment.article.get_detail_url}}">{{comment.article.title}}</a>
+{% endfor %}
+</ul>
+{% endblock %}

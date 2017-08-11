@@ -15,13 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.views.generic import RedirectView
+
+
 urlpatterns = [
-    url(r'^$', RedirectView.as_view(url='/blog/', permanent=True)),
     url(r'^admin/', admin.site.urls),
-    url(r'^blog/', include('blog.urls')),
+    url(r'^', include('blog.urls')),
+    
+
 ]
 
 urlpatterns += [
-    url('^accounts/', include('django.contrib.auth.urls')),
+    url('^accounts/', include('accounts.urls')),
 ]

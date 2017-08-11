@@ -42,6 +42,7 @@ class Comment(models.Model):
     text_content = models.CharField(max_length=600)
     date = models.DateTimeField(default=timezone.now)
     article = models.ForeignKey(Article, null=True)
+    
 
     def __str__(self):
         return 'Comment: ' + self.text_content[:20]

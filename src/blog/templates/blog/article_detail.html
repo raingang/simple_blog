@@ -8,7 +8,9 @@
 </style>
 <div class = "article">
 {% if can_edit %}
+<a href = "{% url 'article_update' article.pk %}">
 Редактировать
+</a>
 {% endif %}
 <h1 class = "article__title">
 {{article.title}}

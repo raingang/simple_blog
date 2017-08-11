@@ -27,6 +27,7 @@ from django.http import Http404
 class ArticleListView(generic.ListView):
     model = Article
     template_name = 'blog/article_list.html'
+    paginate_by = 5
 
     def get_cotext_data(self, **kwargs):
         context = super(ArticleListView, self).get_context_data(**kwargs)
@@ -59,7 +60,7 @@ class ArticleDetailView(generic.DetailView):
             comment.author = auth.get_user(request)
             comment.article = self.get_object()
             comment.save()
-        return HttpResponseRedirect('/blog')
+        return HttpResponseRedirect(self.get_object().get_detail_url())
 
 
 '''
@@ -150,3 +151,10 @@ def update_article(request, pk):
             "title": initial_article.title, "text_content": initial_article.text_content})
     return render(request, 'blog/article_update.html', {'form': form})
 '''
+
+from django.contrib.auth import get_user_model
+
+class UserProfileView(generic.DetailView):
+    model = get_user_model()
+    template_name = 'blog/user_profile'
+
