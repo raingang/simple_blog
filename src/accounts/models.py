@@ -10,7 +10,7 @@ class Profile(models.Model):
     location = models.CharField(null=True, max_length=30, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     user_image = models.ImageField(
-        blank=True, upload_to="users_image/")
+        blank=True, upload_to="users_image/", null = True)
 
     def get_default_image_url(self):
         return '/media/users_image/default_user.png'
