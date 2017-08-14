@@ -1,5 +1,11 @@
 {% extends "base_generic.html" %}
 
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/article_detail.css' %}">
+{% endblock %}
+
+
 {% block content %}
 <style>
 .page__header{
@@ -16,7 +22,7 @@
 {{article.title}}
 </h1>
 <p class = "article__text">
-{{article.text_content}}
+{{article.get_markdown | safe}}
 </p>
 </div>
 {% if comment_form %}
@@ -25,9 +31,9 @@
 <form action = '' method = 'POST'>
 {% csrf_token %}
 
-{{comment_form.title}}
+
 {{comment_form.text_content}}
-<input type = "submit" value = "Отправить">
+<input type = "submit" value = "Отправить" class = "btn-danger">
 </form>
 </div>
 
@@ -38,13 +44,24 @@
 {% for comment in comments %}
 
 <li class = "comment">
+<div class = "row">
 
-<div class = "comment__top">{{comment.author}} {{comment.title}}</div>
+<div class = "comment_user-info col-2">
+{% if comment.author.profile.user_image %}
+<img class = "user-image" src = "{{comment.author.profile.user_image.url}}" width = "150px">
+{% else %}
+<img class = "user-image" src = "{{comment.author.profile.get_default_image_url}}" width = "150px">
+{% endif %}
+ <p class = "comment_user-info__author">{{comment.author}}</p> 
+</div>
 
-<div class = "comment__body">{{comment.text_content}}</div>
+<div class = "comment_content col-10">
 
-<div class = "comment__bottom">{{comment.date}}</div>
+<div class = "comment_content__body">{{comment.text_content}}</div>
 
+<div class = "comment_content__date">{{comment.date}}</div>
+</div>
+</div>
 </li>
 
 {% endfor %}

@@ -23,9 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'l#ujfpqdqq)b%n(l9vgm9jm-ks#88gj%jx7he6s*m4!=u%ef9k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1',
+                 'raingang.pythonanywhere.com',
+                 ]
 
 
 # Application definition
@@ -38,8 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig', 
-    'accounts.apps.AccountsConfig',
-    
+    'accounts.apps.AccountsConfig',    
+    'markdown_deux'
 ]
 
 MIDDLEWARE = [
@@ -122,5 +124,9 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
+MEDIA_URL = '/media/'
 
-LOGIN_REDIRECT_URL = '/' # because profile page does not exist
+
+LOGIN_REDIRECT_URL = '/' 
+LOGOUT_REDIRECT_URL = '/'

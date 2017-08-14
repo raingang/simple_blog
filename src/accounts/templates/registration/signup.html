@@ -1,12 +1,14 @@
 {% extends "base_generic.html" %}
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
 {% block content %}
   <h2>Sign up</h2>
-  <form method="post">
+  <form enctype="multipart/form-data" method="post">
     {% csrf_token %}
     {{ user_form.as_p }}
 
-    {{ profile_form.location }}
-    {{ profile_form.bio }}
-    <button type="submit">Sign up</button>
+    <button class = "btn-success" type="submit">Sign up</button>
   </form>
 {% endblock %}

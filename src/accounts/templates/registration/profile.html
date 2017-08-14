@@ -1,23 +1,42 @@
 {% extends "base_generic.html" %}
+
+{% block head %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/accounts/profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
 {% block content %}
+<div class = "row">
+<div class = "profile_info col-3">
+{% if profile.user_image %}
+<img src = "{{profile.user_image.url}}" alt = "{{profile.user}} image" width = "200">
+{% else %}
+<img src = "{{profile.get_default_image_url }}" alt = "{{profile.user}} image" width = "200">
+{% endif %}
+<div class = "profile_item"><a href = "{{ profile.get_update_url }}" href = "/">Редактировать профиль </a></div>
 <div class = "profile_item">Имя пользователя: {{profile.user}}</div>
 <div class = "profile_item">Информация о себе: {{profile.bio}}</div>
 <div class = "profile_item">Страна: {{profile.location}}</div>
 <div class = "profile_item">День рождения: {{profile.birth_date}}</div>
-
-<ul class = "recent_articles">
+</div>
+<div class = "col-1">
+</div>
+<div class = "profile__actions col-8">
+<div class = "row">
+<ul class = "recent_articles col-6">
 Последние статьи:
 {% for article in recent_articles %}
 <li class = "recent_articles__item"> <a class = "recent_articles__href" href = "{{article.get_detail_url}}">{{ article.title }}</a></li>
 {% endfor %}
 </ul>
 
-<ul>
+<ul class = "recent_comments col-6">
 Последние комментарии:
 {% for comment in recent_comments %}
-<li> <span> {{comment.text_content}} </span> для записи <a href = "{{comment.article.get_detail_url}}">{{comment.article.title}}</a>
+<li> <span> {{comment.text_content}} </span> для записи <a href = "{{comment.article.get_detail_url}}">{{comment.article.title}}</a></li>
 {% endfor %}
 </ul>
+</div>
+</div>
+</div>
 {% endblock %}

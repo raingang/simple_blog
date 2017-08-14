@@ -13,5 +13,9 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    url(r'^profile/(?P<username>\w+)/$', views.profile, name = 'profile' )
+    url(r'^profile/(?P<username>\w+)/$', views.ProfileDetailView.as_view(), name = 'profile' )
+]
+
+urlpatterns += [
+    url(r'^profile/(?P<username>\w+)/edit/$', views.UpdateProfileView.as_view(), name = 'profile_update')
 ]

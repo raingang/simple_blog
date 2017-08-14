@@ -22,7 +22,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
 from django.http import Http404
-
+from django.urls import reverse
 
 class ArticleListView(generic.ListView):
     model = Article
@@ -55,7 +55,6 @@ class ArticleDetailView(generic.DetailView):
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
             comment = Comment()
-            comment.title = comment_form.cleaned_data['title']
             comment.text_content = comment_form.cleaned_data['text_content']
             comment.author = auth.get_user(request)
             comment.article = self.get_object()
@@ -88,8 +87,8 @@ def articleDetail(request, pk):
 
 class CreateArticleView(CreateView):
     model = Article
-    fields = ['title', 'text_content']
     template_name = 'blog/article_create.html'
+    form_class = ArticleForm
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
@@ -101,7 +100,7 @@ class CreateArticleView(CreateView):
         article.text_content = form.cleaned_data['text_content']
         article.author = auth.get_user(self.request)
         article.save()
-        return HttpResponseRedirect('/blog')
+        return HttpResponseRedirect('/')
 '''
 @login_required  # если пользователь не авторизован - редиректит в .../accounts/login
 def post_article(request):
@@ -129,6 +128,13 @@ class UpdateArticleView(UpdateView):
     fields = ['title', 'text_content']
     template_name = 'blog/article_update.html'
 
+
+    def get_success_url(self):
+        return reverse('article_detail', args=[str(self.object.id)])
+
+    def get_object(self):
+        return Article.objects.get(pk = self.kwargs.get('pk'))
+
     @method_decorator(login_required)
     # Проверка: автор записи = пользователь?
     def dispatch(self, request, *args, **kwargs):
@@ -151,10 +157,3 @@ def update_article(request, pk):
             "title": initial_article.title, "text_content": initial_article.text_content})
     return render(request, 'blog/article_update.html', {'form': form})
 '''
-
-from django.contrib.auth import get_user_model
-
-class UserProfileView(generic.DetailView):
-    model = get_user_model()
-    template_name = 'blog/user_profile'
-

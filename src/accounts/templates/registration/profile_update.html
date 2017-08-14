@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/profile_update.css' %}">
+{% endblock %}
+
+{% block content %}
+<form enctype="multipart/form-data" action = "" method="POST" class = "article-form">
+{% csrf_token %}
+<div>
+<p><label for = "id_bio">Информация о себе</label></p>
+{{form.bio}}
+</div>
+<div>
+<p><label for = "id_location">Страна проживания</label></p>
+{{form.location}}
+</div>
+<div>
+<p><label for = "id_birth_date">Дата рождения</label></p>
+{{form.birth_date}}
+</div>
+<div>
+<p><label for = "id_user_image">Изображение пользователя</label></p>
+{{form.user_image}}
+</div>
+
+
+<input class = "btn-success" type = "submit" value = "Отправить">
+</form>
+
+{% endblock %}

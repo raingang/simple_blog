@@ -1,5 +1,8 @@
 {% extends "base_generic.html" %}
-
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/article_edit.css' %}">
+{% endblock %}
 {% block content %}
 <style>
 .page__header{
@@ -16,7 +19,7 @@
 <p><label for = "id_text_content">Содержание</label></p>
 {{form.text_content}}</div>
 <div>
-<input type = "submit" value = "Отправить">
+<input class = 'btn-success' type = "submit" value = "Отправить">
 </form>
 
 {% endblock %}

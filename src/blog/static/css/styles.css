@@ -9,97 +9,42 @@ body{
   clear: both;
 }
 .page__header{
-	font-size: 18px;
+	z-index: 1;
+	font-size: 24px;
 	color: #fff;
 	position: fixed;
 	width: 100%;
 	top: 0px;
 	background-color: #673ab7;
+	margin-bottom: 50px;
+	padding: 12px 0px;
 }
-.header__top-menu{
+
+.header__wrapper{
+	padding: 0px 7%;
+}
+
+.top-menu{
 	float: right;
 	list-style: none;
 	padding: 0px;
 	margin: 0px;
 }
+.logo{
+	text-decoration: none;
+	color: #fff;
+}
 .top-menu__row{
-	margin-right: 10px;
 	display: inline-block;
-	list-style: none;
-	padding: 0px;
-
 }
 .top-menu__item{
 	text-decoration: none;
+	font-size: 20px;
 	color: #fff;
-}
-.top-menu{
-	list-style: none;
-	padding: 0px;
-}
-.header__logo{
-	text-decoration: none;
-	color: #fff;
-	float: left;
-	vertical-align: middle;
-	padding: 16px 0px;
-}
-.header__wrapper{
-	margin: 0px 5%;
-}
-.article-list{
-
-	margin: 0px;
-	padding: 0px;
-    display: flex;
-    flex-direction: column;
-}
-.article-list__article{
-	
-	list-style: none;
-	margin-bottom: 50px;
+	margin-right: 10px;
 }
 .page__main-block{
-	margin: 0 8%;
-	margin-top: 80px;
-}
-.article__title{
-	display: block;
-	font-weight: bold;
-	padding: 10px 0px;
-}
-.article__footer{
-	font-size: 14px;
-	padding: 5px 0px;
-	color: grey;
-}
-
-label{
-	display: block;
-	color: green;
-	font-size: 46px;
-}
-
-.comments{
-	list-style: none;
-	padding: 0px;
-	margin: 0px;
-	display: flex;
-	flex-direction: column;
-}
-
-.comment{
-	padding: 20px 0px;
-}
-
-.comment__top{
-	background-color: #ff9800;
-	padding: 10px 8px;
-	color: #fff;
-	font-size: 20px;
-}
-.pagination{
-	text-align: center;
-	margin: 0 auto;
-	padding: 20px 0px;
+	margin-top: 100px;
+	padding: 0% 10%;
+	z-index: 100;
 }

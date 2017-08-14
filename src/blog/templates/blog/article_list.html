@@ -1,25 +1,38 @@
 {% extends "base_generic.html" %}
 
-{% block content %}
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/article_list.css' %}">
+{% endblock %}
 
+{% block content %}
 <ul class = 'article-list'>
 {% for article in article_list %}
 <li class = 'article-list__article'>
 <div class = 'article'>
-<a href = "{{article.get_detail_url}}"class = 'article__title'>
+<a class = "article__title" href = "{{article.get_detail_url}}">
     {{article.title}}
 </a>
-<span class = 'article__description'>
-	{{article.small_text}}
-</span>
-<div class = "article__footer">
-<span class = 'article__date'>
-    {{article.date}} 
-</span>
+<div class = 'article__description'>
+	<span>{{article.small_text | safe}}</span>
+</div>
+<div class = "article_footer">
+<div class = "article_footer__item">
 
-<span class = 'article__author'>
-Автор: {{ article.author}}  Комментариев: {{ article.get_number_comments }}
-</span>
+Автор: <a href = "{{article.author.profile.get_absolute_url}}">{{ article.author}}</a>
+
+</div>
+<div class = "article_footer__item">
+
+Дата: {{article.date}}
+
+</div>
+
+<div class = "article_footer__item">
+
+Комментариев: {{ article.get_number_comments }}
+
+</div>
 </div>
 </div>
 </li>

@@ -1,0 +1,14 @@
+input{
+	width: 100%;
+	margin-bottom: 20px;
+}
+textarea{
+	width: 100%;
+	margin-bottom: 20px;
+}
+label{
+	font-weight: 600;
+}
+.btn-success{
+	width: 200px;
+}
