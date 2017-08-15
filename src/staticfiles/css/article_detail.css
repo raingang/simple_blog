@@ -1,0 +1,24 @@
+.user-image{
+	overflow: hidden;
+	width: 80px;
+	height: 80px;
+	border-radius: 100px;
+}
+#id_text_content{
+	margin: 0 auto;
+	width: 100%;
+	height: 50px;
+}
+.comments{
+	list-style: none;
+	padding: 0px;
+	margin: 40px 0px;
+}
+.comment{
+	margin-bottom: 20px;
+}
+.comment_user-info__author{
+	margin-left: 5px;
+	font-size: 20px;
+	color: #FF6600;
+}

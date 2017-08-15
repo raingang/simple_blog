@@ -1,0 +1,19 @@
+.article-list{
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+}
+.article{
+	margin-bottom: 40px;
+}
+.article__title{
+	font-size: 22px;
+}
+
+.article__description{
+	padding: 12px 0px;
+}
+.article_footer__item{
+	display: inline-block;
+	margin-right: 20px;
+}
